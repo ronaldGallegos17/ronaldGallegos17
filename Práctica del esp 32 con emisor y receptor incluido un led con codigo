@@ -1,0 +1,49 @@
+import Network 
+from machine umport Pin
+import espnow
+import utime 
+
+
+#A WLAN interface muwt be active to send ()/recv()
+sta =Network.WLAN(Network.sta_IP
+sta.active(true)
+                  
+
+
+esp = espnow.ESPNow()
+esp.active (true)                  
+
+
+peer=b'x08/xd1/xf9/xe6/xd4/x10"
+esp.add_peer(peer)
+
+
+button_pin=pin(23,pin IN,Pin.PULL_upp)
+
+
+last_button_state = 1
+debounce_delay = 50
+
+while true 
+
+current_button_state =button_pin.value()
+
+
+if current_button_state1=last_button_state:
+
+utime.sleep_ms(debounce_delay)
+
+
+current_button_state= button_pin.value()
+
+
+if current_button_state1= last_button_state:
+if current_button_state ==0:
+message ="IedOn"
+print(f"sending conmand : (message)")
+esp.send(peer.message)
+else:
+message ="ledoff"
+print(f"sending command : (message)")
+esp.send(peer,message)
+
